@@ -54,7 +54,7 @@ public class AnimalRepository : IAnimalRepository
 
     public async Task<int> AddAnimal(PostDTO postDto)
 {
-    using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+    await using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
     await con.OpenAsync();
     using var tran = con.BeginTransaction();
     try
@@ -96,7 +96,7 @@ public class AnimalRepository : IAnimalRepository
     catch (SqlException e)
     {
         await tran.RollbackAsync();
-        throw; // Пробрасываем исключение дальше
+        throw; 
     }
 }
 
