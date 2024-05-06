@@ -13,8 +13,13 @@ public class AnimalService : IAnimalService
         _animalRepository = animalRepository;
     }
 
-    public async Task<AnimalDTO> GetAnimal(int id)
+    public async Task<AnimalDTO?> GetAnimal(int id)
     {
         return await _animalRepository.GetAnimal(id);
+    }
+
+    public async Task<int> AddAnimal(PostDTO postDto)
+    {
+        return await _animalRepository.AddAnimal(postDto);
     }
 }

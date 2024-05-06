@@ -29,4 +29,17 @@ public class AnimalController : ControllerBase
         }
     }
 
+    [HttpPost]
+    public async Task<IActionResult> AddAnimal(PostDTO postDto)
+    {
+        try
+        {
+           var id = await _animalService.AddAnimal(postDto);
+           return Ok(id);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
