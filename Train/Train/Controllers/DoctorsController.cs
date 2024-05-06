@@ -20,4 +20,12 @@ public class DoctorsController : ControllerBase
         var doctor = await _doctorsRepository.GetDoctor(id);
         return Ok(doctor);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteDoctor(int id)
+    {
+        var affectedCount = await _doctorsRepository.DeleteDoctor(id);
+        return Ok(affectedCount);
+    }
+    
 }
